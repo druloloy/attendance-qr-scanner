@@ -13,7 +13,7 @@ app.use(cors());
 connect();
 
 
-const PORT = process.env.PORT | 5000;
+const PORT = process.env.PORT || 5000;
 
 // routes
 app.use('/api/students', require('./routes/student.route'));
@@ -22,7 +22,7 @@ app.use('/api/students', require('./routes/student.route'));
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static(path.join(__dirname,'client','build')));
 
-    app.get('/*', (req,res)=>{
+    app.get('*', (req,res)=>{
         res.sendFile(path.join(__dirname, 'client','build','index.html'));
     })  
     
