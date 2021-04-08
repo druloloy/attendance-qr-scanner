@@ -13,6 +13,11 @@ const errorHandler = (err, req, res, next) =>{
         const message = Object.values(err.errors).map(val => val.message);
         error = new ExceptionHandler(message, 400);
     }
+    if(err.name === 'TypeError'){
+        const message = "Search not found.";
+        error = new ExceptionHandler(message, 404);
+    }
+
     res.status(error.statusCode || 500).json({
         success: false,
         error: error.message || "Internal Server Error.",

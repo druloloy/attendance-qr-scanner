@@ -36,9 +36,19 @@ exports.returnID = async (req, res, next) => {
     const { student_id } = req.params;
 
     try {
-        const studInfo = await Student.findOne( { student_id } );
+        await Student.findOne( { student_id } )
+        .then(result=>{
+            res.status(200).json({
+                success: true,
+                studID: result._id
+            });
+        })
+        .catch(error=>{
+            next(error);
+        })
 
-        res.json(studInfo._id);
+
+        
     } catch (error) {
         next(error);
     }
