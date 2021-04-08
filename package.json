@@ -8,7 +8,7 @@
     "server": "nodemon server.js",
     "install-dev": "cd client && npm install",
     "build-dev": "cd client && npm run build",
-    "heroku-postbuild": "npm run install-dev && npm run build-dev"
+    "heroku-postbuild": "npm install && npm run install-dev && npm run build-dev"
   },
   "keywords": [
     "qrcode",
